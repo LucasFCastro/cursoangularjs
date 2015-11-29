@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 02 - Curso de Angular</title>
+    <script src="../js/angular.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
+</head>
+<body>
+    <!--model fora do controller é acessado por qualquer controller-->
+    Busca: <input type="text" ng-model="busca">
+    <br>
+    <div ng-controller="CtrlLista">
+        Pessoas:
+        <select ng-model="selected"
+                ng-options="pessoa.nome for pessoa in pessoas | filter:busca">
+            <option value="">Selectione alguém</option>
+        </select>
+
+        <hr>
+        <div>
+            Nome: <input type="text" ng-model="selected.nome">
+            <br>
+            Cidade: <input type="text" ng-model="selected.cidade">
+        </div>
+    </div>
+
+    <script>
+        var minhaApp = angular.module('app',[]);
+
+        var meuControle =  function($scope) {
+            $scope.pessoas = [
+                {nome: "Maria", cidade: "Crato"},
+                {nome: "Antônio", cidade: "Barbalha"},
+                {nome: "Cícero", cidade: "Juazeiro do Norte"}
+            ];
+        };
+
+        minhaApp.controller('CtrlLista', meuControle);
+    </script>
+
+
+</body>
+</html>
+

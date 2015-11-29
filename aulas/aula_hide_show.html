@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 02 - Curso de Angular</title>
+    <script src="../js/angular.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
+</head>
+<body>
+    <div ng-controller="CtrlApp">
+        <input type="text" ng-model="nome">
+        <input type="checkbox" ng-model="checado"> Mostrar
+        <div ng-show="checado">
+            Olá, {{ nome }}!
+        </div>
+    </div>
+
+    <script>
+        var minhaApp = angular.module('app',[]);
+
+        var meuControle =  function() {
+
+        };
+
+        minhaApp.controller('CtrlApp', meuControle);
+    </script>
+
+
+</body>
+</html>
+

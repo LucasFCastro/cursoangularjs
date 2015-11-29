@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 02 - Curso de Angular</title>
+    <script src="../js/angular.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
+</head>
+<body>
+    <div ng-controller="CtrlApp">
+        <h1>{{nome}}, {{idade}}</h1>
+    </div>
+
+    <script>
+        var minhaApp = angular.module('app',[]);
+
+        var meuControle =  function($scope) {
+            $scope.nome = 'Lucas';
+            $scope.idade = '35 anos';
+
+            $scope.$watch('nome', function(){
+                alert('Oi ' + $scope.nome);
+            });
+        };
+
+        minhaApp.controller('CtrlApp', meuControle);
+    </script>
+
+</body>
+</html>
+

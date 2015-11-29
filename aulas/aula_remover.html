@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Aula 02 - Curso de Angular</title>
+    <script src="../js/angular.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
+</head>
+<body>
+    <!--model fora do controller é acessado por qualquer controller-->
+    Busca: <input type="text" ng-model="filtro">
+
+    <div ng-controller="CtrlLista">
+        <br/>
+        Total: <b>{{ pessoas.length }}</b>
+        <br/>
+        <ul>
+            <li ng-repeat="pessoa in pessoas | filter:filtro">
+                {{ pessoa.nome }}, <b>{{pessoa.cidade}}</b>
+                <button ng-click="remover($index)">Remover</button>
+            </li>
+        </ul>
+
+
+        <div>
+            Nome: <input type="text" ng-model="vNome">
+            <br />
+            Cidade: <input type="text" ng-model="vCidade">
+            <br />
+            <button ng-click="adicionar()">Adicionar a lista</button>
+        </div>
+    </div>
+
+    <script>
+        var minhaApp = angular.module('app',[]);
+
+        var meuControle =  function($scope) {
+            $scope.pessoas = [
+                {nome: "Maria", cidade: "Crato"},
+                {nome: "Antônio", cidade: "Barbalha"},
+                {nome: "Cícero", cidade: "Juazeiro do Norte"}
+            ];
+
+            $scope.adicionar = function(){
+                $scope.pessoas.push({
+                    nome: $scope.vNome,
+                    cidade: $scope.vCidade
+                });
+                $scope.vNome = '';
+                $scope.vCidade = '';
+            };
+
+            $scope.remover = function(index) {
+                $scope.pessoas.splice(index, 1);
+            };
+        };
+
+        minhaApp.controller('CtrlLista', meuControle);
+    </script>
+
+
+</body>
+</html>
+
